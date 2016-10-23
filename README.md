@@ -12,13 +12,13 @@ In each timestep, a vanilla RNN receives some external input and yields some out
 
 A RNN in DNC learns so that it achieves appropriate input-output relationship in the situation that "the memory" --- a convenient tool to compute --- is given to use freely. How the RNN utilizes the tool depends on its learning.
 
-Although "read-write memory" seems to be very special, it can be regarded as a form of internal state of a RNN; in other words, DNC is an RNN that has non-trivial internal-state dynamics like LSTM, but the dynamics are very complicated[^1]. This memory enables the RNN to perform complicated information processings.
-Moreover, equipped with "read-write memory", which is fairly convenient for every kind of information processing, I expect that DNC is found to be versatile --- to perform various types of tasks reasonably well.
-
-[^1]: They call the memory as "external". They say that is because "The behaviour of the network is independent of the memory size as long as the memory is not filled to capacity".
+Although "read-write memory" seems to be very special, it can be regarded as a form of internal state of a RNN(*); in other words, DNC is an RNN that has non-trivial internal-state dynamics like LSTM, but the dynamics are very complicated. This memory enables the RNN to perform complicated information processings. Moreover, equipped with "read-write memory", which is fairly convenient for every kind of information processing, I expect that DNC has high versatility --- to perform various types of tasks reasonably well.
 
 Note that their [NTM (Neural Turing Machine)](https://arxiv.org/pdf/1410.5401v2.pdf) proposed in 2014 has similar structure to DNC. The difference between DNC and NTM is that DNC has more reasonable memory heads' movement. (For datails see the Methods in the DNC paper.)
 
-
 The Supplementary Material of their paper is very useful to implement DNC. It contains ALL variables used in the model and ALL equations to construct the computational graph of the model in two pages. Most of the names of the variables shown in my code coincide with that in their paper.
+
+
+
+(*): They call the memory as "external". They say that is because "The behaviour of the network is independent of the memory size as long as the memory is not filled to capacity".
 
