@@ -21,3 +21,4 @@ Note that their [NTM (Neural Turing Machine)](https://arxiv.org/pdf/1410.5401v2.
 
 
 The Supplementary Material of their paper is very useful to implement DNC. It contains ALL variables used in the model and ALL equations to construct the computational graph of the model in two pages. Most of the names of the variables shown in my code coincide with that in their paper.
+
