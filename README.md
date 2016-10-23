@@ -16,14 +16,11 @@ Although "read-write memory" seems to be very special, it can be regarded as a f
 
 Note that their [NTM (Neural Turing Machine)](https://arxiv.org/pdf/1410.5401v2.pdf) proposed in 2014 has similar structure to DNC. The difference between DNC and NTM is that DNC has more reasonable memory heads' movement. (For datails see the Methods in the DNC paper.)
 
+(*): They call the memory as "external". They say that is because "The behaviour of the network is independent of the memory size as long as the memory is not filled to capacity".
+
 
 # About my code
 
 In my code, a very small-scale DNC learns a very easy "repeat after me" task. It seems to learn correctly without errors, but it does not necessarily mean that this program correctly performs DNC. If you have any comments about my code, please feel free to contact @yos1up (twitter).
 
 The Supplementary Material of their paper is very useful to implement DNC. It contains ALL variables used in the model and ALL equations to construct the computational graph of the model in two pages. Most of the names of the variables shown in my code coincide with that in their paper.
-
-
-
-(*): They call the memory as "external". They say that is because "The behaviour of the network is independent of the memory size as long as the memory is not filled to capacity".
-
