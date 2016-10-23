@@ -1,7 +1,7 @@
 # Implementation of Differentiable Neural Computers (DNC) in Chainer
 
 Differentiable Neural Computers (DNC) is a neural network architecture proposed by DeepMind in [their third paper on Nature](http://www.nature.com/articles/nature20101.epdf?author_access_token=ImTXBI8aWbYxYQ51Plys8NRgN0jAjWel9jnR3ZoTv0MggmpDmwljGswxVdeocYSurJ3hxupzWuRNeGvvXnoO8o4jTJcnAyhGuZzXJ1GEaD-Z7E6X_a9R-xqJ9TfJWBqz).
-I have implemented DNC in [Chainer](http://chainer.org/), a flexible framework of neural networks developped by Preferred Networks.
+I have implemented DNC in [Chainer](http://chainer.org/), a flexible framework of neural networks developped by [Preferred Networks](https://www.preferred-networks.jp/en/).
 
 # What is DNC ?
 DNC is a newly proposed neural network. In their paper, DNC learns well in several complex tasks, including finding shortest path in a graph and solving a block puzzle game. It is expected to have the capacity to solve complex, structured tasks that are inaccessible to previous neural networks.
