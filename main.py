@@ -26,7 +26,7 @@ def C(M, k, beta):
     W = M.data.shape[1]    
     ret_list = [0] * M.data.shape[0]
     for i in range(M.data.shape[0]):
-        ret_list[i] = overlap(F.reshape(F.select_item(F.transpose(M), np.array([i] * W)), (1, W)), k) * beta # pick i-th row
+        ret_list[i] = overlap(F.reshape(M[i,:], (1, W)), k) * beta # pick i-th row
     return F.transpose(F.softmax(F.transpose(F.concat(ret_list, 0)))) # concat vertically and calc softmax in each column
 
 
@@ -37,8 +37,8 @@ def u2a(u): # u, a: (N * 1) Variable
     a_list = [0] * N    
     cumprod = Variable(np.array([[1.0]]).astype(np.float32)) 
     for i in range(N):
-        a_list[phi[i]] = cumprod * (1.0 - F.reshape(F.select_item(F.transpose(u), np.array([phi[i]])),(1,1)))
-        cumprod *= F.reshape(F.select_item(F.transpose(u), np.array([phi[i]])), (1,1))
+        a_list[phi[i]] = cumprod * (1.0 - F.reshape(u[phi[i],0], (1,1)))
+        cumprod *= F.reshape(u[phi[i],0], (1,1))
     return F.concat(a_list, 0) # concat vertically
 
 
@@ -96,8 +96,7 @@ class DNC(Chain):
         self.psi_mat = 1 - F.matmul(Variable(np.ones((self.N, 1)).astype(np.float32)), self.f) * self.wr # N * R
         self.psi = Variable(np.ones((self.N, 1)).astype(np.float32)) # N * 1
         for i in range(self.R):
-            self.psi = self.psi * F.reshape(F.select_item(self.psi_mat,np.array([i]*self.N)),(self.N,1))
-        # N * 1
+            self.psi = self.psi * F.reshape(self.psi_mat[:,i],(self.N,1)) # N * 1
 
         # self.ww, self.u : N * 1
         self.u = (self.u + self.ww - (self.u * self.ww)) * self.psi
@@ -118,8 +117,8 @@ class DNC(Chain):
 
         self.cr_list = [0] * self.R
         for i in range(self.R):
-            self.cr_list[i] = C(self.M, F.reshape(F.select_item(F.transpose(self.kr),np.array([i]*self.W)),(1, self.W)),
-                                F.reshape(F.select_item(self.betar, np.array([i])),(1, 1))) # N * 1
+            self.cr_list[i] = C(self.M, F.reshape(self.kr[i,:],(1, self.W)),
+                                F.reshape(self.betar[0,i],(1, 1))) # N * 1
         self.cr = F.concat(self.cr_list) # N * R
 
         self.bacrfo = F.concat((F.reshape(F.transpose(self.ba),(self.R,self.N,1)),
